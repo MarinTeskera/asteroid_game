@@ -15,26 +15,26 @@ export class Asteroid {
       case 0: // Top
         this.x = Math.random() * this.game.width;
         this.y = -this.height;
-        this.speedX = Math.random() * 2 - 1; // Random number between -1 and 1
-        this.speedY = Math.random(); // Only positive speedY
+        this.speedX = Math.random() * 4 - 2; // Faster speedX
+        this.speedY = Math.random() * 2 + 1; // Faster and only positive speedY
         break;
       case 1: // Right
         this.x = this.game.width;
         this.y = Math.random() * this.game.height;
-        this.speedX = -Math.random(); // Only negative speedX
-        this.speedY = Math.random() * 2 - 1; // Random number between -1 and 1
+        this.speedX = -Math.random() * 2 - 1; // Faster and only negative speedX
+        this.speedY = Math.random() * 4 - 2; // Faster speedY
         break;
       case 2: // Bottom
         this.x = Math.random() * this.game.width;
         this.y = this.game.height;
-        this.speedX = Math.random() * 2 - 1; // Random number between -1 and 1
-        this.speedY = -Math.random(); // Only negative speedY
+        this.speedX = Math.random() * 4 - 2; // Faster speedX
+        this.speedY = -Math.random() * 2 - 1; // Faster and only negative speedY
         break;
       case 3: // Left
         this.x = -this.width;
         this.y = Math.random() * this.game.height;
-        this.speedX = Math.random(); // Only positive speedX
-        this.speedY = Math.random() * 2 - 1; // Random number between -1 and 1
+        this.speedX = Math.random() * 2 + 1; // Faster and only positive speedX
+        this.speedY = Math.random() * 4 - 2; // Faster speedY
         break;
       default:
         break;
