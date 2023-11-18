@@ -43,9 +43,6 @@ export class Game {
   }
 
   draw() {
-    // this.ctx.fillStyle = "black"; // Set canvas background color to black
-    // this.ctx.fillRect(0, 0, this.width, this.height);
-
     this.ctx.strokeStyle = "green";
     this.ctx.lineWidth = 5;
     this.ctx.strokeRect(0, 0, this.width, this.height);
