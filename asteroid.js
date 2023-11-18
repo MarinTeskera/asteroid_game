@@ -7,6 +7,7 @@ export class Asteroid {
     this.width = size;
     this.height = size;
     this.spawnOutsideScreen();
+    this.color = this.getRandomGrayColor();
   }
 
   spawnOutsideScreen() {
@@ -44,13 +45,18 @@ export class Asteroid {
     }
   }
 
+  getRandomGrayColor() {
+    const randomShade = Math.floor(Math.random() * 128) + 70;
+    return `rgb(${randomShade}, ${randomShade}, ${randomShade})`;
+  }
+
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
   }
 
   draw(context) {
-    context.fillStyle = "gray";
+    context.fillStyle = this.color;
     context.fillRect(this.x, this.y, this.width, this.height);
   }
 }
