@@ -53,7 +53,17 @@ export class Game {
   }
 
   spawnNewAsteroid() {
-    const newAsteroid = new Asteroid(this, this.player, 2);
+    var speed = 2;
+
+    if (this.elapsedTime > 180000) {
+      speed = 5;
+    } else if (this.elapsedTime > 120000) {
+      speed = 4;
+    } else if (this.elapsedTime > 60000) {
+      speed = 3;
+    }
+
+    const newAsteroid = new Asteroid(this, this.player, speed);
     this.asteroids.push(newAsteroid);
   }
 
