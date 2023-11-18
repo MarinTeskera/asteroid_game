@@ -1,6 +1,3 @@
-import { Player } from "./player.js";
-import { InputHandler } from "./input.js";
-import { Asteroid } from "./asteroid.js";
 import { Game } from "./game.js";
 
 window.addEventListener("load", () => {
