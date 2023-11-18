@@ -53,7 +53,7 @@ export class Game {
   }
 
   spawnNewAsteroid() {
-    const newAsteroid = new Asteroid(this, this.player, this.ctx);
+    const newAsteroid = new Asteroid(this, this.player, 2);
     this.asteroids.push(newAsteroid);
   }
 
