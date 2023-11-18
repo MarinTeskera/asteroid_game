@@ -80,8 +80,10 @@ export class Game {
   }
 
   drawHighScore() {
-    const highScoreMinutes = Math.floor(this.highScore / 60000);
-    const highScoreSeconds = ((this.highScore % 60000) / 1000).toFixed(3);
+    const toShow =
+      this.highScore > this.elapsedTime ? this.highScore : this.elapsedTime;
+    const highScoreMinutes = Math.floor(toShow / 60000);
+    const highScoreSeconds = ((toShow % 60000) / 1000).toFixed(3);
 
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Arial";
