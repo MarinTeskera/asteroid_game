@@ -35,6 +35,13 @@ export class Game {
     }
   }
 
+  reset() {
+    this.player.reset();
+    this.asteroids = [];
+    this.startTime = Date.now();
+    this.gameOver = false;
+  }
+
   draw() {
     this.ctx.fillStyle = "black"; // Set canvas background color to black
     this.ctx.fillRect(0, 0, this.width, this.height);
@@ -63,9 +70,16 @@ export class Game {
   }
 
   drawHighScore() {
+    const highScoreMinutes = Math.floor(this.highScore / 60000);
+    const highScoreSeconds = ((this.highScore % 60000) / 1000).toFixed(3);
+
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Arial";
-    this.ctx.fillText(`High Score: ${this.highScore}`, 10, 60);
+    this.ctx.fillText(
+      `High Score: ${highScoreMinutes}:${highScoreSeconds}`,
+      10,
+      60
+    );
   }
 
   checkCollision() {
