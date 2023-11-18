@@ -19,10 +19,12 @@ export class Game {
     this.player.update(this.input.keys);
     this.asteroids.forEach((asteroid) => asteroid.update());
 
+    const elapsedTimeInSeconds = (Date.now() - this.startTime) / 1000;
+    const spawnRate = Math.max(2000 - elapsedTimeInSeconds * 20, 500);
+
     // Check if it's time to spawn a new asteroid
-    if (Date.now() - this.lastSpawnTime > this.asteroidSpawnInterval) {
+    if (Math.random() < 20 / spawnRate) {
       this.spawnNewAsteroid();
-      this.lastSpawnTime = Date.now();
     }
 
     this.updateTimer();
