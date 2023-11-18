@@ -27,4 +27,9 @@ export class Player {
     context.fillStyle = "red";
     context.fillRect(this.x, this.y, this.width, this.height);
   }
+
+  reset() {
+    this.x = this.game.width / 2 - this.width / 2;
+    this.y = this.game.height / 2 - this.height / 2;
+  }
 }

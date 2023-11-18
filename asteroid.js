@@ -44,16 +44,6 @@ export class Asteroid {
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-
-    // Check for collision with player
-    if (
-      this.x < this.player.x + this.player.width &&
-      this.x + this.width > this.player.x &&
-      this.y < this.player.y + this.player.height &&
-      this.y + this.height > this.player.y
-    ) {
-      console.log("Collision with player!");
-    }
   }
 
   draw(context) {
