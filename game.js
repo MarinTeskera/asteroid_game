@@ -30,6 +30,7 @@ export class Game {
       // provjera je li vrijeme za spawnati novi asteroid
       if (Math.random() < 20 / spawnRate) {
         this.spawnNewAsteroid();
+        this.spawnNewAsteroid();
       }
 
       this.updateTimer();
@@ -50,7 +51,7 @@ export class Game {
 
   // funkcija za spawn asteroida
   spawnNewAsteroid() {
-    var speed = 2;
+    var speed = 2.5;
 
     if (this.elapsedTime > 180000) {
       speed = 5;
