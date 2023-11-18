@@ -2,6 +2,7 @@ import { Player } from "./player.js";
 import { InputHandler } from "./input.js";
 import { Asteroid } from "./asteroid.js";
 
+// klasa igre
 export class Game {
   constructor(width, height, ctx) {
     this.ctx = ctx;
@@ -10,23 +11,23 @@ export class Game {
     this.player = new Player(this, 5, ctx);
     this.asteroids = [];
     this.input = new InputHandler();
-    this.startTime = Date.now(); // Added timer start time
+    this.startTime = Date.now();
     this.highScore = localStorage.getItem("highScore") || 0;
   }
 
+  // funkcija za update igre
   update() {
     if (!this.gameOver) {
       this.player.update(this.input.keys);
       this.asteroids.forEach((asteroid) => asteroid.update());
 
-      // Check for collision
       this.checkCollision();
 
-      // Adjust spawn rate based on elapsed time
+      // Podesavanje brzine spawnanja asteroida
       const elapsedTimeInSeconds = (Date.now() - this.startTime) / 1000;
       const spawnRate = Math.max(2000 - elapsedTimeInSeconds * 20, 500);
 
-      // Check if it's time to spawn a new asteroid
+      // provjera je li vrijeme za spawnati novi asteroid
       if (Math.random() < 20 / spawnRate) {
         this.spawnNewAsteroid();
       }
@@ -35,13 +36,7 @@ export class Game {
     }
   }
 
-  reset() {
-    this.player.reset();
-    this.asteroids = [];
-    this.startTime = Date.now();
-    this.gameOver = false;
-  }
-
+  // funkcija za crtanje igre
   draw() {
     this.ctx.strokeStyle = "green";
     this.ctx.lineWidth = 5;
@@ -53,6 +48,7 @@ export class Game {
     this.drawHighScore();
   }
 
+  // funkcija za spawn asteroida
   spawnNewAsteroid() {
     var speed = 2;
 
@@ -68,10 +64,12 @@ export class Game {
     this.asteroids.push(newAsteroid);
   }
 
+  // funkcija za postavljanje vremena
   updateTimer() {
     this.elapsedTime = Date.now() - this.startTime;
   }
 
+  // funkcija za prikaz vremena
   drawTimer() {
     const minutes = Math.floor(this.elapsedTime / 60000);
     const seconds = ((this.elapsedTime % 60000) / 1000).toFixed(3);
@@ -80,6 +78,7 @@ export class Game {
     this.ctx.fillText(`Time: ${minutes}:${seconds}`, 10, 30);
   }
 
+  // funkcija za prikaz high score-a
   drawHighScore() {
     const toShow =
       this.highScore > this.elapsedTime ? this.highScore : this.elapsedTime;
@@ -95,6 +94,7 @@ export class Game {
     );
   }
 
+  // funkcija za provjeru kolizije
   checkCollision() {
     this.asteroids.forEach((asteroid) => {
       if (
@@ -103,16 +103,15 @@ export class Game {
         this.player.y < asteroid.y + asteroid.height &&
         this.player.y + this.player.height > asteroid.y
       ) {
-        // Collision detected
         this.gameOver = true;
 
-        // Check and save high score
+        // promijeniti high score ako je potrebno
         if (this.elapsedTime > this.highScore) {
           this.highScore = this.elapsedTime;
           localStorage.setItem("highScore", this.highScore);
         }
 
-        // Reset the game after a delay
+        // resetirati igru nakon 2 sekunde
         setTimeout(() => {
           this.resetGame();
         }, 2000);
@@ -120,6 +119,7 @@ export class Game {
     });
   }
 
+  // funkcija za resetiranje igre
   resetGame() {
     this.player.reset();
     this.asteroids = [];

@@ -1,3 +1,4 @@
+// klasa igraca
 export class Player {
   constructor(game, speed) {
     this.game = game;
@@ -8,6 +9,7 @@ export class Player {
     this.speed = speed;
   }
 
+  // funkcija za micanje igraca (moguce kretanje strelicama ili WASD tipkama)
   update(keys) {
     if ((keys.ArrowUp || keys.w) && this.y > 0) {
       this.y -= this.speed;
@@ -23,11 +25,13 @@ export class Player {
     }
   }
 
+  // funkcija za crtanje igraca
   draw(context) {
     context.fillStyle = "red";
     context.fillRect(this.x, this.y, this.width, this.height);
   }
 
+  // funkcija za resetiranje igraca
   reset() {
     this.x = this.game.width / 2 - this.width / 2;
     this.y = this.game.height / 2 - this.height / 2;

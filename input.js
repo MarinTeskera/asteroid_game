@@ -1,7 +1,9 @@
+// klasa za input
 export class InputHandler {
   constructor() {
     this.keys = {};
 
+    // event listener za stiskanje tipki
     window.addEventListener("keydown", (event) => {
       const key = event.key;
       if (
@@ -20,6 +22,7 @@ export class InputHandler {
       }
     });
 
+    // event listener za otpustanje tipki
     window.addEventListener("keyup", (event) => {
       const key = event.key;
       if (
